@@ -30,18 +30,28 @@ $result = mysqli_query($conn,$sql);
 </h1>
 <h2>
     <?php
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-    {
-        echo $row['item_type'];
-        echo ", ";
-        echo $row['item_title'];
-        echo ", ";
-        echo $row['item_lot'];
-        echo "\r\n";
-    };
+    echo "<table>";
+    echo "<p><b>View All</b></p>";
+    echo "<tr> <th>ID</th> <th>Item Type</th> <th>Item Title</th> <th>Item Lot</th><th></th><th></th></tr>";
+    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+        echo "<tr>";
+
+        echo '<td>' . $row['id'] . '</td>';
+        echo '<td>' . $row['item_type'] . '</td>';
+        echo '<td>' . $row['item_title'] . '</td>';
+        echo '<td>' . $row['item_lot'] . '</td>';
+
+        echo '<td><a href="manage_items.php?id=' . $row['id'] . '">Edit</a></td>';
+        echo '<td><a href="delete.php?id=' . $row['id'] . '">Delete</a></td>';
+        echo "</tr>";
+    }
+    echo "</table>";
 
 
      ?>
+
+    <p><a href="change.php">Add a new record</a></p>
+    <p><a href="index.html">Home</a></p>
 </h2>
 </body>
 </HTML>
