@@ -11,7 +11,25 @@ $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
 ?>
+<?php
+    if (isset($_POST['Submit']))
+    {
 
+    $id = $_GET['id'];
+
+    $item_title = htmlspecialchars($_POST['item_title']);
+    $item_type = htmlspecialchars($_POST['item_type']);
+    $item_lot = htmlspecialchars($_POST['item_lot']);
+    $row['item_type'] = $item_type;
+    $row['item_title'] = $item_title;
+    $row['item_lot'] = $item_lot;
+    mysqli_query($conn,
+    "UPDATE mytable SET item_type='$item_type', item_title='$item_title', item_lot='$item_lot' Where id = '$id'");
+    echo "Item with ID:", $id, " changed successfully";
+
+
+    };
+?>
 <p>Edit Records</p>
 
 <form action="" method="post">
@@ -21,7 +39,7 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
         <strong>Item Title: </strong> <input type="text" name="item_title" value="<?php echo $row['item_title']; ?>"/><br/>
 
-        <strong>Item Title: </strong> <input type="text" name="item_type" value="<?php echo $row['item_type']; ?>"/><br/>
+        <strong>Item Type: </strong> <input type="text" name="item_type" value="<?php echo $row['item_type']; ?>"/><br/>
         <strong>Item Lot Number: </strong> <input type="text" name="item_lot" value="<?php echo $row['item_lot']; ?>"/><br/>
         <input type="submit" name="Submit" value="Submit">
 
@@ -37,20 +55,5 @@ include 'footer.php';
 ?>
 
 <?php
-
 include 'config.php';
-
-if (isset($_POST['submit']))
-{
-    
-        $id = $_POST['id'];
-
-        $item_title = htmlspecialchars($_POST['item_title']);
-        $item_type = htmlspecialchars($_POST['item_type']);
-        $item_lot = htmlspecialchars($_POST['item_lot']);
-        mysqli_query($conn,"UPDATE mytable SET 'item_type'='$item_type', 'item_title'='$item_title', 'item_lot'='$item_lot'");
-
-
-};
-
-
+?>
