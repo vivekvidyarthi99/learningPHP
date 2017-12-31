@@ -1,16 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "database_testing";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include "config.php";
+include "common.php";
+include "session.php";
 $sql = "SELECT * FROM mytable";
 $result = mysqli_query($conn,$sql);
 #$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -51,7 +43,7 @@ $result = mysqli_query($conn,$sql);
      ?>
 
     <p><a href="change.php">Add a new record</a></p>
-    <p><a href="index.html">Home</a></p>
+    <p><a href="index.php">Home</a></p>
 </h2>
 </body>
 </HTML>

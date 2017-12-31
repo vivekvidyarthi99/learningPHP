@@ -5,7 +5,7 @@
  * users table.
  *
  */
-
+include "session.php";
 
 if (isset($_POST['submit']))
 {
@@ -63,6 +63,6 @@ if (isset($_POST['submit']) && $statement)
     <input type="submit" name="submit" id="Submit">
 </form>
 
-<a href="index.html">Back to Home</a>
+<a href="index.php">Back to Home</a>
 
 <?php include "footer.php" ?>
